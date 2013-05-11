@@ -37,4 +37,12 @@
             android:gravity="center_horizontal" />
     </TextSwitcher>
 
+    <com.mikedg.android.glass.lock.GlassTextView
+        android:id="@+id/forGuestMode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/FOR_GUEST_MODE_TEXT" android:textSize="20dp" android:textColor="@android:color/white" />
+
 </RelativeLayout>

@@ -37,6 +37,12 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
                 //FIXME: if here, make sure we communicate a long press to the main app! maybe a localbroadcast?
                 abortBroadcast();
             }
+        } else if (intent.getAction().equals(GlassHelper.ACTION_GUEST_MODE)) {
+            //If we are turning guest mode off then lock
+            if (!intent.getBooleanExtra(GlassHelper.EXTRA_GUEST_MODE_ENABLED, false)) {
+                bringMainActivityToFront(context);
+            }
+            //Can I see who sent this? abort it?
         }
     }
 

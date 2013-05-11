@@ -8,6 +8,7 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
 
     <application
         android:allowBackup="true"
@@ -31,6 +32,9 @@
             <intent-filter android:priority="1000">
                 <!-- Prevents normal, long press to Google -->
                 <action android:name="com.google.glass.action.LONG_TAP" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="com.google.glass.ACTION_GUEST_MODE" />
             </intent-filter>
         </receiver>
 
