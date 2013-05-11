@@ -1,5 +1,5 @@
 /*
-Copyright 2013 Michael DiGiovanni
+Copyright 2013 Michael DiGiovanni glass@mikedg.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,9 +19,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
-import android.util.Log;
-
-import java.util.Set;
 
 public class ScreenBroadcastReceiver extends BroadcastReceiver {
 
@@ -34,6 +31,12 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
             }
         } else if (intent.getAction().equals("com.google.glass.action.DON_STATE")) {
             handleDonStateChanged(context, intent);
+        } else if (intent.getAction().equals("com.google.glass.action.LONG_TAP")) {
+            //Prevents long press from trigger Google Search... should only prevent if we are
+            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(MainActivity.PREF_LOCKED, true)) {
+                //FIXME: if here, make sure we communicate a long press to the main app! maybe a localbroadcast?
+                abortBroadcast();
+            }
         }
     }
 

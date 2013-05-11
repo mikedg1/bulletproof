@@ -28,6 +28,10 @@
             <intent-filter>
                 <action android:name="com.google.glass.action.DON_STATE" />
             </intent-filter>
+            <intent-filter android:priority="1000">
+                <!-- Prevents normal, long press to Google -->
+                <action android:name="com.google.glass.action.LONG_TAP" />
+            </intent-filter>
         </receiver>
 
         <service android:name="LockService" >

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">com.mikedg.android.glass.lock</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="app_name">Bulletproof</string>
+    <string name="FOR_GUEST_MODE_TEXT">%s for Guest Mode</string>
 </resources>
