@@ -18,6 +18,7 @@ package com.mikedg.android.glass.lock;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -64,13 +65,35 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher1);
-        
         startLockService();
 
+        if (isGuestModeEnabled()) {
+            //This isn't the right place for this, but it's the easiest way to get this wokring reliably without having to test :)
+            finish();
+            return;
+        }
+
+        textSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher1);
+        
         gestureDetector = new GestureDetector(this, this);
         
         setGuestText();        
+        
+        setTime();
+    }
+
+    public boolean isGuestModeEnabled()
+    {
+      Intent localIntent = this.registerReceiver(null, new IntentFilter(GlassHelper.ACTION_GUEST_MODE));
+      boolean bool = false;
+      if (localIntent != null)
+        bool = localIntent.getBooleanExtra(GlassHelper.EXTRA_GUEST_MODE_ENABLED, false);
+      return bool;
+    }
+    
+    private void setTime() {
+        //TODO: appropriately handle time changes
+        textSwitcher.setCurrentText(android.text.format.DateFormat.format("h:mm", new java.util.Date()));
     }
 
     private void setGuestText() {
@@ -158,7 +181,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
         if (isCorrectCode()) {
             unlock();
         } else if (isGuestCode()) {
-            guestUnloxcked(); 
+            guestUnlocked(); 
         }
     }
 
@@ -177,7 +200,7 @@ public class MainActivity extends Activity implements GestureDetector.OnGestureL
         return "unknown";
     }
 
-    private void guestUnloxcked() {
+    private void guestUnlocked() {
         Intent localIntent = new Intent(GlassHelper.ACTION_GUEST_MODE);
         localIntent.putExtra(GlassHelper.EXTRA_GUEST_MODE_TOGGLE_TIME,
                 System.currentTimeMillis());

@@ -40,7 +40,14 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
         } else if (intent.getAction().equals(GlassHelper.ACTION_GUEST_MODE)) {
             //If we are turning guest mode off then lock
             if (!intent.getBooleanExtra(GlassHelper.EXTRA_GUEST_MODE_ENABLED, false)) {
+                //We just turned guest mode off
+                PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(MainActivity.PREF_LOCKED, true)
+                .commit();
                 bringMainActivityToFront(context);
+            } else {
+                PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(MainActivity.PREF_LOCKED, false)
+                .commit();
+                //We just turned guest mode on
             }
             //Can I see who sent this? abort it?
         }

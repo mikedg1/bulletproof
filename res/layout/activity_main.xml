@@ -25,16 +25,20 @@
         android:inAnimation="@anim/slide_in_left"
         android:outAnimation="@anim/slide_out_left" >
 
-        <TextView
+        <com.mikedg.android.glass.lock.GlassTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
 
-        <TextView
+        <com.mikedg.android.glass.lock.GlassTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
     </TextSwitcher>
 
     <com.mikedg.android.glass.lock.GlassTextView
@@ -43,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/FOR_GUEST_MODE_TEXT" android:textSize="20dp" android:textColor="@android:color/white" />
+        android:text="@string/FOR_GUEST_MODE_TEXT"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
 
 </RelativeLayout>
