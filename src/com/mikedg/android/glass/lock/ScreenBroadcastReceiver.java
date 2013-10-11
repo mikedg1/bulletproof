@@ -31,7 +31,7 @@ public class ScreenBroadcastReceiver extends BroadcastReceiver {
             }
         } else if (intent.getAction().equals("com.google.glass.action.DON_STATE")) {
             handleDonStateChanged(context, intent);
-        } else if (intent.getAction().equals("com.google.glass.action.LONG_TAP")) {
+        } else if (intent.getAction().equals("com.google.glass.action.LONG_PRESS")) {
             //Prevents long press from trigger Google Search... should only prevent if we are
             if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(MainActivity.PREF_LOCKED, true)) {
                 //FIXME: if here, make sure we communicate a long press to the main app! maybe a localbroadcast?

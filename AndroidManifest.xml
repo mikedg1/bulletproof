@@ -29,9 +29,9 @@
             <intent-filter>
                 <action android:name="com.google.glass.action.DON_STATE" />
             </intent-filter>
-            <intent-filter android:priority="1000">
+            <intent-filter android:priority="2000">
                 <!-- Prevents normal, long press to Google -->
-                <action android:name="com.google.glass.action.LONG_TAP" />
+                <action android:name="com.google.glass.action.LONG_PRESS" />
             </intent-filter>
             <intent-filter android:priority="1000">
                 <action android:name="com.google.glass.ACTION_GUEST_MODE" />
